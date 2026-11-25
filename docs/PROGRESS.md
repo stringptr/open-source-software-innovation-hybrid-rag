@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-25 - 23:41 - Tahap 2 P1: EDA notebook (eval/eda.ipynb)
 
-- **Commit:** _pending_
+- **Commit:** 545369a feat(eda): add exploratory data analysis notebook
 - **Deskripsi:** Menambahkan `eval/eda.ipynb` (EDA korpus: distribusi tahun, primary topic dan keyword, bahasa, panjang abstrak, persentase karya berabstrak, plus cross-check API topic-wide) dan `requirements.txt` (`jupyter`, `pandas`, `matplotlib`). Notebook mengekspor CSV ke `data/eda/` (gitignored) dan PNG ke `report/figures/`.
 - **Catatan:** Requirements-only: dependensi belum diinstal di lingkungan ini, jadi notebook belum dieksekusi di sini. Verifikasi terbatas pada JSON notebook valid, semua code cell lolos compile, dan logika API diuji langsung. Jalankan `pip install -r requirements.txt` lalu `jupyter nbconvert --execute eval/eda.ipynb`.
 - **Hasil:** Notebook EDA siap dijalankan; metrik korpus diverifikasi via stdlib: 15.077 karya, 100% berabstrak, tahun 1866-2027 (median 2016), 427 primary topic, panjang abstrak rata-rata 156 kata (median 146, p10 35, p90 257, min 1, max 4027).
