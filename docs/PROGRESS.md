@@ -4,6 +4,15 @@ Log of work on this project. Newest entries at the top. One entry per unit of wo
 
 Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, hasil, temuan, and file yang diubah.
 
+## 2026-11-25 - 23:13 - Add research question and stakeholder question docs
+
+- **Commit:** _pending_
+- **Deskripsi:** Menambahkan `docs/Research Question.md` (pertanyaan per rumusan masalah, per eksperimen 1-7, desain/metodologi, validitas, reproduksibilitas, dan tanya-jawab dosen) dan `docs/Stakeholder Question.md` (kandidat pertanyaan pengguna untuk golden set, berlabel [SH]/[MH]/[AGG], dibagi A-H termasuk uji penolakan).
+- **Catatan:** Kedua dokumen bersifat rencana/evaluasi; belum ada kode. `Stakeholder Question.md` langsung menyuplai kandidat golden set untuk Tahap 2 (P3).
+- **Hasil:** Daftar pertanyaan penelitian dan kandidat golden set terdokumentasi di repo.
+- **Temuan:** Target golden set final 50 soal (25 single-hop + 25 multi-hop) plus 2-3 soal penolakan; soal agregasi [AGG] dipakai untuk demo/kualitatif, bukan Recall@K.
+- **File yang diubah:** `docs/Research Question.md`, `docs/Stakeholder Question.md`, `docs/PROGRESS.md`
+
 ## 2026-11-25 - 22:44 - Tahap 1 P1: OpenAlex ingest, raw data, VERSIONS.md
 
 - **Commit:** b215a2b feat(ingest): fetch OpenAlex corpus with cursor paging and abstract reconstruction
