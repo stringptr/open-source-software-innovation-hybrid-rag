@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-25 - 15:13 - Bootstrap conventions and ponytail submodule
 
-- **Commit:** _pending_
+- **Commit:** ab246c4 chore(repo): bootstrap conventions, ponytail submodule, progress log
 - **Deskripsi:** Menyiapkan konvensi kerja proyek: `AGENTS.md` (think-first, goal-driven, surgical changes, komentar, format commit, log progress), `docs/PROGRESS.md`, dan skill ponytail sebagai submodule.
 - **Catatan:** Ponytail tidak di-inline; dipasang sebagai submodule `./.skills/ponytail` dan dimuat lewat `opencode.json` (`skills: ["./.skills/ponytail/skills"]`). Submodule dikloning shallow (`--depth 1`) karena repo besar.
 - **Hasil:** Repo memiliki aturan kerja yang berlaku lintas sesi, skill ponytail tersedia, dan progress log mulai dicatat.
