@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-25 - 22:44 - Tahap 1 P1: OpenAlex ingest, raw data, VERSIONS.md
 
-- **Commit:** _pending_
+- **Commit:** b215a2b feat(ingest): fetch OpenAlex corpus with cursor paging and abstract reconstruction
 - **Deskripsi:** Menambahkan `ingest/fetch_openalex.py` (cursor paging, api key dari `.env`, retry/backoff, rekonstruksi `abstract_inverted_index`), `.gitignore` (menyamarkan `.env` dan `data/`), `.env.example`, dan `VERSIONS.md`. Menjalankan ingest penuh: 15.077 karya ke `data/raw/openalex_works.jsonl`.
 - **Catatan:** Filter korpus `topics.id:T11675,has_abstract:true,type:article,language:en`; T11675 = "Open Source Software Innovations" (terverifikasi). Api key dibaca dari `.env` (`OPEN_ALEX_API_KEY`). Tidak ada resume: rerun menimpa, cukup untuk ~76 request.
 - **Hasil:** Data mentah tersimpan sebagai JSONL; tiap baris = record OpenAlex utuh + field `abstract` hasil rekonstruksi. Jumlah total karya tercatat: 15.077 (== `meta.count`). File 245 MB, masuk `.gitignore`.
