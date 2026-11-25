@@ -4,6 +4,15 @@ Log of work on this project. Newest entries at the top. One entry per unit of wo
 
 Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, hasil, temuan, and file yang diubah.
 
+## 2026-11-25 - 23:50 - uv project initialization replaces requirements.txt
+
+- **Commit:** _pending_
+- **Deskripsi:** Menambahkan proyek uv: `.python-version` (3.12), `pyproject.toml` (deps `jupyter`, `matplotlib`, `pandas`), `uv.lock`, dan `README.md`; menghapus `requirements.txt`. `pyproject.toml` dijadikan aplikasi non-package (tanpa `[project.scripts]` dan `[build-system]`) karena skeleton `src/project` sudah dihapus dan kode berada di `ingest/` dan `eval/`.
+- **Catatan:** `uv.lock` di-relock setelah build-system dihapus. `.venv` lama menunjuk interpreter yang tidak ada (sisa container lain); uv mengabaikannya dan akan membuat ulang saat `uv sync`.
+- **Hasil:** `uv lock --check` lolos; `uv sync --dry-run` me-resolve 109 paket tanpa error. `uv build` sebelumnya gagal (README tidak ada dan nama module tidak cocok), sehingga README ditambahkan.
+- **Temuan:** `pyproject.toml` hasil generate tidak dapat di-build: `readme = "README.md"` menunjuk berkas yang tidak ada, dan `uv_build` mencari module `src/open_source_software_innovation_hybrid_rag/` padahal skeleton bernama `src/project/` (lalu dihapus). uv 0.13.9.
+- **File yang diubah:** `pyproject.toml`, `uv.lock`, `.python-version`, `README.md`, `docs/PROGRESS.md`; dihapus `requirements.txt`
+
 ## 2026-11-25 - 23:41 - Tahap 2 P1: EDA notebook (eval/eda.ipynb)
 
 - **Commit:** 545369a feat(eda): add exploratory data analysis notebook
