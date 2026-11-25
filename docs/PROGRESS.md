@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-25 - 23:50 - uv project initialization replaces requirements.txt
 
-- **Commit:** _pending_
+- **Commit:** f1b8ed2 chore(uv): initialize uv project, replacing requirements.txt
 - **Deskripsi:** Menambahkan proyek uv: `.python-version` (3.12), `pyproject.toml` (deps `jupyter`, `matplotlib`, `pandas`), `uv.lock`, dan `README.md`; menghapus `requirements.txt`. `pyproject.toml` dijadikan aplikasi non-package (tanpa `[project.scripts]` dan `[build-system]`) karena skeleton `src/project` sudah dihapus dan kode berada di `ingest/` dan `eval/`.
 - **Catatan:** `uv.lock` di-relock setelah build-system dihapus. `.venv` lama menunjuk interpreter yang tidak ada (sisa container lain); uv mengabaikannya dan akan membuat ulang saat `uv sync`.
 - **Hasil:** `uv lock --check` lolos; `uv sync --dry-run` me-resolve 109 paket tanpa error. `uv build` sebelumnya gagal (README tidak ada dan nama module tidak cocok), sehingga README ditambahkan.
