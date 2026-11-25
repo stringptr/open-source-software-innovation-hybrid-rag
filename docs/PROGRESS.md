@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-25 - 23:13 - Add research question and stakeholder question docs
 
-- **Commit:** _pending_
+- **Commit:** d499896 docs(eval): add research questions and stakeholder question set
 - **Deskripsi:** Menambahkan `docs/Research Question.md` (pertanyaan per rumusan masalah, per eksperimen 1-7, desain/metodologi, validitas, reproduksibilitas, dan tanya-jawab dosen) dan `docs/Stakeholder Question.md` (kandidat pertanyaan pengguna untuk golden set, berlabel [SH]/[MH]/[AGG], dibagi A-H termasuk uji penolakan).
 - **Catatan:** Kedua dokumen bersifat rencana/evaluasi; belum ada kode. `Stakeholder Question.md` langsung menyuplai kandidat golden set untuk Tahap 2 (P3).
 - **Hasil:** Daftar pertanyaan penelitian dan kandidat golden set terdokumentasi di repo.
