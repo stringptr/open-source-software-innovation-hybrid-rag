@@ -17,6 +17,9 @@ Pin every image, model, and seed here. Update when a decision is final; leave un
 | Works fetched | 15077 |
 | Fetch date | 2026-11-25 |
 | Raw file | `data/raw/openalex_works.jsonl` (gitignored) |
+| Full text source | OpenAlex content API, `content_urls.grobid_xml` (GROBID TEI XML), $0.01 per file |
+| Full text coverage | 5515 of 15077 works (36.6%); the other 9498 have no cached full text |
+| Full text cache | `data/fulltext/{work_id}.xml` + `manifest.csv` (gitignored) |
 
 ## Services (Docker images)
 
