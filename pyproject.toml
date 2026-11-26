@@ -7,4 +7,12 @@ authors = [
   { name = "Satria Manggala Putra Pratama", email = "satriampp@proton.me" },
 ]
 requires-python = ">=3.12"
-dependencies = ["certifi>=2026.11.20", "jupyter>=1.1.1", "matplotlib>=3.11.2", "pandas>=3.1.1"]
+dependencies = [
+  "certifi>=2026.11.20",
+  "jupyter>=1.1.1",
+  "matplotlib>=3.11.2",
+  "pandas>=3.1.1",
+  "scikit-learn",
+  "sentence-transformers",
+  "torch",
+]
