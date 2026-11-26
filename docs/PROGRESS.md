@@ -6,7 +6,7 @@ Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, 
 
 ## 2026-11-26 - 01:23 - Run EDA notebook (inline charts and API cross-check verified)
 
-- **Commit:** _pending_
+- **Commit:** 4a11654 feat(eda): commit executed notebook and the four new figures
 - **Deskripsi:** Menjalankan `eval/eda.ipynb` di laptop #1 lewat `uv`, lalu menyimpan hasilnya: 14 output (7 gambar inline, 0 error) di notebook dan 4 PNG baru (`abstract_coverage`, `coverage_rates`, `language_corpus`, `language_topic_wide`).
 - **Catatan:** Sumber notebook tidak berubah sama sekali, hanya output yang bertambah. Tiga PNG dari run sebelumnya tidak ikut berubah.
 - **Hasil:** Perbaikan SSL dan render inline terbukti bekerja: sel cross-check API selesai tanpa error dan ketujuh grafik muncul sebagai output `image/png`. Angka keluaran sama persis dengan verifikasi manual sebelumnya: korpus 15.077, total topik 75.472, berabstrak 48.320, cakupan topik 64,0%, porsi korpus 31,2%, 60 grup bahasa dengan English 37.490 (77,6%).
