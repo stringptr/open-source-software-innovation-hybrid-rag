@@ -4,6 +4,15 @@ Log of work on this project. Newest entries at the top. One entry per unit of wo
 
 Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, hasil, temuan, and file yang diubah.
 
+## 2026-11-26 - 01:23 - Run EDA notebook (inline charts and API cross-check verified)
+
+- **Commit:** _pending_
+- **Deskripsi:** Menjalankan `eval/eda.ipynb` di laptop #1 lewat `uv`, lalu menyimpan hasilnya: 14 output (7 gambar inline, 0 error) di notebook dan 4 PNG baru (`abstract_coverage`, `coverage_rates`, `language_corpus`, `language_topic_wide`).
+- **Catatan:** Sumber notebook tidak berubah sama sekali, hanya output yang bertambah. Tiga PNG dari run sebelumnya tidak ikut berubah.
+- **Hasil:** Perbaikan SSL dan render inline terbukti bekerja: sel cross-check API selesai tanpa error dan ketujuh grafik muncul sebagai output `image/png`. Angka keluaran sama persis dengan verifikasi manual sebelumnya: korpus 15.077, total topik 75.472, berabstrak 48.320, cakupan topik 64,0%, porsi korpus 31,2%, 60 grup bahasa dengan English 37.490 (77,6%).
+- **Temuan:** `matplotlib.use("Agg")` memang penyebab grafik tidak muncul; setelah dihapus, grafik inline tampil di semua sel analisis. Sel cross-check kini menghasilkan tujuh CSV di `data/eda/` (gitignored).
+- **File yang diubah:** `eval/eda.ipynb`, `report/figures/abstract_coverage.png`, `report/figures/coverage_rates.png`, `report/figures/language_corpus.png`, `report/figures/language_topic_wide.png`, `docs/PROGRESS.md`
+
 ## 2026-11-26 - 00:55 - Charts for the coverage, language, and cross-check cells
 
 - **Commit:** 53b13c8 feat(eda): chart the coverage, language and cross-check cells
