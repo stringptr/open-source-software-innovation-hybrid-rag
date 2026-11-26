@@ -4,6 +4,15 @@ Log of work on this project. Newest entries at the top. One entry per unit of wo
 
 Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, hasil, temuan, and file yang diubah.
 
+## 2026-11-26 - 00:55 - Charts for the coverage, language, and cross-check cells
+
+- **Commit:** _pending_
+- **Deskripsi:** Menambahkan grafik pada tiga sel yang belum punya: sel ringkasan korpus (bar cakupan abstrak: total topik vs berabstrak vs korpus), sel Language (bar bahasa korpus), dan sel API cross-check (bar rasio cakupan 64,0% dan 31,2%, plus bar horizontal 10 bahasa teratas topic-wide). Helper `openalex()` dipindah dari sel cross-check ke sel setup agar sel ringkasan bisa memanggil API lebih dulu; variabel `total`, `with_abs`, dan `corpus` dihitung sekali di sel ringkasan lewat `corpus = len(df)` dan dipakai ulang di sel cross-check, sehingga tidak ada kueri ganda. Impor `FILTER` dihapus karena tidak lagi terpakai. Empat PNG baru: `abstract_coverage.png`, `language_corpus.png`, `coverage_rates.png`, `language_topic_wide.png`.
+- **Catatan:** Bar cakupan korpus di sel 2 dan tabel cross-check di sel 12 memakai angka yang sama, jadi grafiknya dibedakan: sel 2 menampilkan jumlah absolut, sel 12 menampilkan rasio. Sel 8 hanya berisi satu batang (`en`) karena filter `language:en`; judulnya diberi keterangan filter agar tidak terlihat rusak. Konsekuensinya sel 2 kini melakukan dua panggilan API, jadi sel itu gagal bila API tidak terjangkau. Output notebook dikosongkan lagi.
+- **Hasil:** Semua 7 code cell lolos compile, JSON valid, 0 output tersisa, tidak ada lagi referensi `FILTER`/`urlopen`/`Agg`/`plt.close`. Logika kueri diuji langsung ke `api.openalex.org` dengan urutan sel 2 lalu sel 12: total 75.472, berabstrak 48.320, korpus 15.077, rasio 64,0% dan 31,2%; 60 grup bahasa (English 37.490, 77,6%), 57 grup tahun.
+- **Temuan:** `FILTER` menjadi yatim setelah `corpus = len(df)` menggantikan kueri `openalex(FILTER)`, jadi impornya dibuang. Notebook tetap tidak dapat dieksekusi di container ini (pandas/matplotlib tidak terpasang, `.venv` rusak), sehingga keempat PNG baru belum ada dan pemanggilan plot serta render inline belum diuji secara nyata; PNG lama di `report/figures/` belum tersentuh.
+- **File yang diubah:** `eval/eda.ipynb`, `docs/PROGRESS.md`
+
 ## 2026-11-26 - 00:12 - Fix SSL certificate error under uv Python and render charts inline
 
 - **Commit:** 95d061c fix(eda): fix TLS verification under uv Python, render charts inline
