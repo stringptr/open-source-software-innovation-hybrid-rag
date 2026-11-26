@@ -30,5 +30,11 @@ Pin every image, model, and seed here. Update when a decision is final; leave un
 
 | Purpose | Model | Owner |
 |---------|-------|-------|
-| Embedding | bge-m3 (planned) | P1 |
+| Embedding | bge-m3 (`BAAI/bge-m3`, 1024 dim, fp16 on CUDA, max_seq 512, no query prefix) | P1 |
 | LLM extract/generate/judge | TBD | P3 |
+
+Embedding config lives in `data/embeddings/bge-m3/meta.json` after a run: model,
+HF revision, dimension, device, batch actually used, and the embedded text
+template (`title` + newline + `abstract`). Fallback if bge-m3 does not fit VRAM:
+`multilingual-e5-small` (384 dim, needs `query:`/`passage:` prefixes and a new
+output directory, since the dimension differs).
