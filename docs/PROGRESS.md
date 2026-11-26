@@ -4,6 +4,15 @@ Log of work on this project. Newest entries at the top. One entry per unit of wo
 
 Entry header: `tanggal - time - title`, followed by commit, deskripsi, catatan, hasil, temuan, and file yang diubah.
 
+## 2026-11-26 - 00:12 - Fix SSL certificate error under uv Python and render charts inline
+
+- **Commit:** _pending_
+- **Deskripsi:** Memperbaiki `CERTIFICATE_VERIFY_FAILED` pada sel cross-check API dan menampilkan grafik inline di notebook. `ingest/fetch_openalex.py` sekarang membangun `SSL_CONTEXT` dari `certifi` (fallback ke context default bila `certifi` tidak ada) dan memakainya di `get()`. Notebook membuang helper `urlopen` sendiri dan memanggil `get()` bersama sehingga konteks SSL hanya didefinisikan sekali; `matplotlib.use("Agg")` dan `plt.close(fig)` dihapus agar grafik tampil inline setelah tabel teks. `certifi` ditambahkan sebagai dependensi eksplisit di `pyproject.toml` (di-relock). Output notebook dikosongkan, `.gitignore` mendapat `.ipynb_checkpoints/`, dan tiga PNG di `report/figures/` di-commit.
+- **Catatan:** Penyebabnya bukan kode notebook: uv mengunduh CPython `python-build-standalone` (`~/.local/share/uv/python/cpython-3.12.13-...`) yang tidak membawa CA bundle, sedangkan Python sistem di container ini lolos verifikasi. `certifi` memang sudah ada di lock sebagai dependensi transitif jupyter, tetapi urllib tidak otomatis memakainya, jadi harus dideklarasikan dan dipakai eksplisit. Notebook tidak dapat dieksekusi di container ini (`.venv` rusak menunjuk interpreter container lain, dependensi belum dipasang), sehingga render inline belum diuji secara nyata.
+- **Hasil:** `uv lock --check` lolos (109 paket, `certifi` kini dependensi top-level). Kedua cabang SSL diuji langsung ke `api.openalex.org`: path fallback (Python sistem, 148 CA) dan path certifi (disimulasikan dengan modul `certifi` yang menunjuk bundle CA), keduanya berhasil. Logika sel API diuji dengan `get()` bersama: total 75.472, berabstrak 48.320 (64,0%), korpus 15.077, 60 grup bahasa, 57 grup tahun. Semua 7 code cell notebook lolos compile, JSON valid, 0 output tersisa, tidak ada lagi referensi `Agg`/`plt.close`/`urlopen`.
+- **Temuan:** Python hasil unduhan uv perlu CA bundle sendiri; ini juga akan menyerang `uv run python ingest/fetch_openalex.py`, jadi perbaikannya diletakkan di helper bersama, bukan di notebook. `matplotlib.use("Agg")` ternyata mematikan tampilan inline, bukan hanya memilih backend tanpa layar: grafik tidak pernah muncul dan tidak ada output `image/png` di notebook hasil eksekusi.
+- **File yang diubah:** `ingest/fetch_openalex.py`, `eval/eda.ipynb`, `pyproject.toml`, `uv.lock`, `.gitignore`, `report/figures/*.png`, `docs/PROGRESS.md`
+
 ## 2026-11-25 - 23:50 - uv project initialization replaces requirements.txt
 
 - **Commit:** f1b8ed2 chore(uv): initialize uv project, replacing requirements.txt

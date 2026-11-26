@@ -1534,6 +1534,7 @@ name = "open-source-software-innovation-hybrid-rag"
 version = "0.1"
 source = { virtual = "." }
 dependencies = [
+    { name = "certifi" },
     { name = "jupyter" },
     { name = "matplotlib" },
     { name = "pandas" },
@@ -1541,6 +1542,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "certifi", specifier = ">=2026.11.20" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "matplotlib", specifier = ">=3.11.2" },
     { name = "pandas", specifier = ">=3.1.1" },

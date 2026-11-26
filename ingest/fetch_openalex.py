@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import re
+import ssl
 import sys
 import time
 import urllib.error
@@ -17,6 +18,14 @@ API = "https://api.openalex.org/works"
 FILTER = "topics.id:T11675,has_abstract:true,type:article,language:en"
 MAILTO = os.environ.get("OPENALEX_MAILTO", "satriampp@proton.me")
 PER_PAGE = 200
+
+# uv-managed Pythons ship no CA bundle, so verify against certifi when present.
+try:
+    import certifi
+
+    SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    SSL_CONTEXT = ssl.create_default_context()
 
 
 def load_api_key(env_path=".env"):
@@ -46,7 +55,7 @@ def get(url, params, retries=5):
     )
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=60, context=SSL_CONTEXT) as resp:
                 return json.load(resp)
         except urllib.error.HTTPError as err:
             if err.code in (429, 500, 502, 503, 504) and attempt < retries - 1:
